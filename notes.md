@@ -14,5 +14,12 @@ Follow good coding practices. Keep your code DRY (Do not repeat yourself) by uti
 ## Brainstorming ideas
 
 - Find the time build a daily schedule, help you figure out your week
-- simple weather app (do you need a coat)
-- 
+- simple weather app (do you need a coat?)
+- BuildABinge: get an idea of how long it would take to watch a TV Show
+
+- build a binge
+- user stories
+- I should type in a name of a tv show and see a list of results (submit event)(iterate over scraping)
+- from those results I should be able to select a show and get the number of episodes and seasons of that show and average runtime (click event)
+- I should be able to choose how many episodes a night I want to watch and get a number of sittings to complete (click event)
+- save past se
