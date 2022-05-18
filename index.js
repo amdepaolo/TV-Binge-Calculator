@@ -8,12 +8,20 @@ function submitSearch(){
     const search = document.getElementById('search')
     search.addEventListener('submit', (e)=>{
         e.preventDefault()
-        console.log(search.show.value)
+        fetchResults(search.show.value)
     })
 }
 
 function fetchResults(showTitle){
     fetch(`https://api.tvmaze.com/search/shows?q=${showTitle}`)
     .then(resp => resp.json())
-    .then(resp => console.log(resp))
+    .then(resp => resp.forEach(buildResults))
+}
+
+function buildResults(object){
+    const results = document.getElementById('results')
+    let showName = document.createElement('p')
+    showName.innerText = object.show.name
+    showName.id = object.show.id
+    results.append(showName)
 }
