@@ -15,7 +15,9 @@ function submitSearch(){
 function fetchResults(showTitle){
     fetch(`https://api.tvmaze.com/search/shows?q=${showTitle}`)
     .then(resp => resp.json())
-    .then(resp => resp.forEach(buildResults))
+    .then(resp => {
+        document.getElementById('results').innerText = ''
+        resp.forEach(buildResults)})
 }
 
 function buildResults(object){
@@ -23,5 +25,13 @@ function buildResults(object){
     let showName = document.createElement('p')
     showName.innerText = object.show.name
     showName.id = object.show.id
+    showName.addEventListener('click', ()=>fetchShow(showName.id))
     results.append(showName)
+}
+
+// from those results I should be able to select a show and get the number of episodes and seasons of that show and average runtime (click event)
+function fetchShow(showID){
+    fetch(`https://api.tvmaze.com/shows/${showID}`)
+    .then(resp => resp.json())
+    .then(resp => console.log(resp))
 }
