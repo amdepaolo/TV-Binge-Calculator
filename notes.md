@@ -19,7 +19,8 @@ Follow good coding practices. Keep your code DRY (Do not repeat yourself) by uti
 
 - build a binge
 - user stories
-- I should type in a name of a tv show and see a list of results (submit event)(iterate over scraping)
+- I should type in a name of a tv show and see a list of results (submit event)(iterate over results)
 - from those results I should be able to select a show and get the number of episodes and seasons of that show and average runtime (click event)
+- I should see some brief information about the show
 - I should be able to choose how many episodes a night I want to watch and get a number of sittings to complete (click event)
-- save past se
+- I should be able to break it down by season

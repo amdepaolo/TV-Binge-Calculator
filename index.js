@@ -11,3 +11,9 @@ function submitSearch(){
         console.log(search.show.value)
     })
 }
+
+function fetchResults(showTitle){
+    fetch(`https://api.tvmaze.com/search/shows?q=${showTitle}`)
+    .then(resp => resp.json())
+    .then(resp => console.log(resp))
+}
