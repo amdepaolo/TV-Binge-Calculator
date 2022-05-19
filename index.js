@@ -31,7 +31,7 @@ function buildResults(object){
 
 // from those results I should be able to select a show and get the number of episodes and seasons of that show and average runtime (click event)
 function fetchShow(showID){
-    fetch(`https://api.tvmaze.com/shows/${showID}?embed[]=seasons`)
+    fetch(`https://api.tvmaze.com/shows/${showID}?embed[]=episodes&embed[]=seasons`)
     .then(resp => resp.json())
     .then(buildShowInfo)
 }
@@ -43,4 +43,11 @@ function buildShowInfo(showObject){
     showName.innerText = showObject.name
     showImg.src = showObject.image.medium
     document.getElementById('show-info').append(showName, showImg)
+    showMath(showObject)
+}
+
+function showMath(showObject){
+    let numEps = showObject._embedded.episodes.length
+    let numSeas = showObject._embedded.seasons.length
+    console.log(numEps, numSeas)
 }
