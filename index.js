@@ -40,14 +40,19 @@ function buildShowInfo(showObject){
     document.getElementById('show-info').innerText = ''
     let showName = document.createElement('h2')
     let showImg = document.createElement('img')
+    let description = document.createElement('p')
+    description.innerHTML = showObject.summary
     showName.innerText = showObject.name
     showImg.src = showObject.image.medium
-    document.getElementById('show-info').append(showName, showImg)
-    showMath(showObject)
+    document.getElementById('show-info').append(showName, showImg, description)
+    showStats(showObject)
 }
 
-function showMath(showObject){
-    let numEps = showObject._embedded.episodes.length
-    let numSeas = showObject._embedded.seasons.length
-    console.log(numEps, numSeas)
+function showStats(showObject){
+    let showNums = {}
+    showNums.numEps = showObject._embedded.episodes.length
+    showNums.numSeas = showObject._embedded.seasons.length
+    showNums.runtime = showObject.runtime;
+    console.log(showNums)
+    return showNums
 }
