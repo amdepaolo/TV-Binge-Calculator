@@ -44,8 +44,9 @@ function buildShowInfo(showObject){
     description.innerHTML = showObject.summary
     showName.innerText = showObject.name
     showImg.src = showObject.image.medium
-    document.getElementById('show-info').append(showName, showImg, description)
-    showStats(showObject)
+    const x = showStats(showObject)
+    document.getElementById('show-info').append(showName, showImg, description, buildShowNumbers(x))
+    
 }
 
 function showStats(showObject){
@@ -55,4 +56,15 @@ function showStats(showObject){
     showNums.runtime = showObject.runtime;
     console.log(showNums)
     return showNums
+}
+
+function buildShowNumbers(showNums){
+    let statDiv = document.createElement('div')
+    let totalWatchTime = (showNums.numEps * showNums.runtime)/60
+    let eps = document.createElement('p')
+    let time = document.createElement('p')
+    eps.innerText = `This show has ${showNums.numEps} episodes over ${showNums.numSeas} seasons`
+    time.innerText = `Watching the show will take about ${totalWatchTime} hours`
+    statDiv.append(eps, time)
+    return statDiv
 }
