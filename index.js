@@ -25,7 +25,9 @@ function buildResults(object){
     let showName = document.createElement('p')
     showName.innerText = object.show.name
     showName.id = object.show.id
-    showName.addEventListener('click', ()=>fetchShow(showName.id))
+    showName.addEventListener('click', ()=>{
+        results.hidden = true
+        fetchShow(showName.id)})
     results.append(showName)
 }
 
@@ -86,7 +88,7 @@ function divideWatch(showNums){
         if (numberSelect.value * showNums.runtime > 24 * 60){
             results.innerText = "You can't watch that many episodes in one day"
         }
-        else {results.innerText = `If you watch at pace of ${numberSelect.value} per day you'll finish the show in ${math.ceil(showNums.numEps / numberSelect.value)} days`}
+        else {results.innerText = `If you watch at pace of ${numberSelect.value} per day you'll finish the show in ${Math.ceil(showNums.numEps / numberSelect.value)} days`}
     })
     return dayDiv
 }
