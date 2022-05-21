@@ -22,6 +22,7 @@ function fetchResults(showTitle){
 
 function buildResults(object){
     const results = document.getElementById('results')
+    results.hidden = false
     let showName = document.createElement('p')
     showName.innerText = object.show.name
     showName.id = object.show.id
@@ -55,18 +56,24 @@ function showStats(showObject){
     let showNums = {}
     showNums.numEps = showObject._embedded.episodes.length
     showNums.numSeas = showObject._embedded.seasons.length
-    showNums.runtime = showObject.runtime;
+    if (showObject.runtime === null){showNums.runtime = showObject.averageRuntime}
+    else showNums.runtime = showObject.runtime;
     console.log(showNums)
     return showNums
 }
 
 function buildShowNumbers(showNums){
     let statDiv = document.createElement('div')
-    let totalWatchTime = (showNums.numEps * showNums.runtime)/60
     let eps = document.createElement('p')
     let time = document.createElement('p')
+    if (showNums.runtime === null){
+        time.innerText = "Can't currently calculate total runtime for this show"
+    }
+    else{
+        let totalWatchTime = (showNums.numEps * showNums.runtime)/60
+        time.innerText = `Watching the show will take about ${totalWatchTime} hours`
+    }
     eps.innerText = `This show has ${showNums.numEps} episodes over ${showNums.numSeas} seasons`
-    time.innerText = `Watching the show will take about ${totalWatchTime} hours`
     statDiv.append(eps, time)
     return statDiv
 }
