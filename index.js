@@ -16,6 +16,7 @@ function fetchResults(showTitle){
     fetch(`https://api.tvmaze.com/search/shows?q=${showTitle}`)
     .then(resp => resp.json())
     .then(resp => {
+        document.getElementById('show-info').hidden = true
         document.getElementById('results').innerText = ''
         resp.forEach(buildResults)})
 }
@@ -40,6 +41,7 @@ function fetchShow(showID){
 }
 
 function buildShowInfo(showObject){
+    document.getElementById('show-info').hidden = false
     document.getElementById('show-info').innerText = ''
     let showName = document.createElement('h2')
     let showImg = document.createElement('img')
@@ -78,13 +80,12 @@ function buildShowNumbers(showNums){
     return statDiv
 }
 
-// I should be able to choose how many episodes a night I want to watch and get a number of sittings to complete (click event)
+// I should be able to choose how many episodes a night I want to watch and get a number of sittings to complete (input event)
 
 function divideWatch(showNums){
     let dayDiv = document.createElement('div')
     let numberSelect = document.createElement('input')
     numberSelect.type = 'number'
-    numberSelect.id = 'number'
     numberSelect.value = 1
     dayDiv.innerText = 'How many episodes per day do you want to watch?'
     dayDiv.append(numberSelect)
