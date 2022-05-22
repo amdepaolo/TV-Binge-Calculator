@@ -81,6 +81,11 @@ function buildShowNumbers(showNums){
 }
 
 // I should be able to choose how many episodes a night I want to watch and get a number of sittings to complete (input event)
+function daysFromNow(numOfDays){
+    let now = Date.now()
+    let futureDate = new Date(now + (numOfDays * 86400000))
+    return futureDate.toLocaleDateString()
+}
 
 function divideWatch(showNums){
     let dayDiv = document.createElement('div')
@@ -90,13 +95,16 @@ function divideWatch(showNums){
     dayDiv.innerText = 'How many episodes per day do you want to watch?'
     dayDiv.append(numberSelect)
     let results = document.createElement('p')
-    results.innerText = `If you watch at pace of ${numberSelect.value} per day you'll finish the show in ${(showNums.numEps / numberSelect.value)} days`
+    let numOfDays = Math.ceil(showNums.numEps / numberSelect.value)
+    results.innerText = `If you watch at pace of ${numberSelect.value} per day you'll finish the show in ${numOfDays} days. If you start now you'll finish on ${daysFromNow(numOfDays)}!`
     dayDiv.append(results)
     numberSelect.addEventListener('input', ()=>{
         if (numberSelect.value * showNums.runtime > 24 * 60){
             results.innerText = "You can't watch that many episodes in one day"
         }
-        else {results.innerText = `If you watch at pace of ${numberSelect.value} per day you'll finish the show in ${Math.ceil(showNums.numEps / numberSelect.value)} days`}
+        else {
+            numOfDays = Math.ceil(showNums.numEps / numberSelect.value)
+            results.innerText = `If you watch at pace of ${numberSelect.value} per day you'll finish the show in ${numOfDays} days. If you start now you'll finish on ${daysFromNow(numOfDays)}!`}
     })
     return dayDiv
 }
