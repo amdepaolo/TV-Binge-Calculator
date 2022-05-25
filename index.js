@@ -19,6 +19,7 @@ function fetchResults(showTitle){
         document.getElementById('show-info').hidden = true
         document.getElementById('results').innerText = ''
         resp.forEach(buildResults)})
+    .catch(err => console.log(err))
 }
 
 function buildResults(object){
@@ -38,6 +39,7 @@ function fetchShow(showID){
     fetch(`https://api.tvmaze.com/shows/${showID}?embed[]=episodes&embed[]=seasons`)
     .then(resp => resp.json())
     .then(buildShowInfo)
+    .catch(err => console.log(err))
 }
 
 function buildShowInfo(showObject){
@@ -72,7 +74,7 @@ function buildShowNumbers(showNums){
     }
     else{
         let totalWatchTime = (showNums.numEps * showNums.runtime)/60
-        time.innerText = `Watching the show will take about ${totalWatchTime} hours.`
+        time.innerText = `Watching the show will take about ${Math.round(totalWatchTime)} hours.`
     }
     eps.innerText = `This show has ${showNums.numEps} episodes over ${showNums.numSeas} seasons.`
     statDiv.append(eps, time)

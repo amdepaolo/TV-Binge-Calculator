@@ -18,13 +18,13 @@ Follow good coding practices. Keep your code DRY (Do not repeat yourself) by uti
 ### user stories
 
 #### MVP
-- I should type in a name of a tv show and see a list of results (submit event)(iterate over results) 
-- from those results I should be able to select a show and get the number of episodes and seasons of that show and average runtime (click event)
-- I should see some brief information about the show
-- I should be able to choose how many episodes a night I want to watch and get a number of sittings to complete (click event)
+- I should type in a name of a tv show and see a list of results (submit event)(iterate over results) (completed)
+- from those results I should be able to select a show and get the number of episodes and seasons of that show and average runtime (click event) (completed)
+- I should see some brief information about the show (complete)
+- I should be able to choose how many episodes a night I want to watch and get a number of sittings to complete (click event) (completed)
 
 #### Stretch goals
 - I should be able to break it down by season
 - I should be able to tell how many episodes I've watched and get accurate results from there
-- Using the current date and the number of episodes I want to watch per night, I should see a date when I will finish
+- Using the current date and the number of episodes I want to watch per night, I should see a date when I will finish (completed)
 - I should be able hold onto numbers and keep track when revisiting the app

@@ -13,6 +13,7 @@ div {
 #results {
     text-align: left;
     color: blue;
+    cursor: pointer;
 }
 
 footer {
