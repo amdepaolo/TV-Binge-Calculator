@@ -28,3 +28,7 @@ Follow good coding practices. Keep your code DRY (Do not repeat yourself) by uti
 - I should be able to tell how many episodes I've watched and get accurate results from there
 - Using the current date and the number of episodes I want to watch per night, I should see a date when I will finish (completed)
 - I should be able hold onto numbers and keep track when revisiting the app
+
+#### miscelaneous issues
+- Want to get accurate show counts to now, only episodes that have currently aired
+- Add links to more info
