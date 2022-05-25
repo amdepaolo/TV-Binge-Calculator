@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded',()=>{
-    console.log('DOM Content Loaded')
     submitSearch()
 })
 
@@ -9,6 +8,7 @@ function submitSearch(){
     search.addEventListener('submit', (e)=>{
         e.preventDefault()
         fetchResults(search.show.value)
+        search.reset()
     })
 }
 
@@ -60,7 +60,6 @@ function showStats(showObject){
     showNums.numSeas = showObject._embedded.seasons.length
     if (showObject.runtime === null){showNums.runtime = showObject.averageRuntime}
     else showNums.runtime = showObject.runtime;
-    console.log(showNums)
     return showNums
 }
 
@@ -69,13 +68,13 @@ function buildShowNumbers(showNums){
     let eps = document.createElement('p')
     let time = document.createElement('p')
     if (showNums.runtime === null){
-        time.innerText = "Can't currently calculate total runtime for this show"
+        time.innerText = "Can't currently calculate total runtime for this show."
     }
     else{
         let totalWatchTime = (showNums.numEps * showNums.runtime)/60
-        time.innerText = `Watching the show will take about ${totalWatchTime} hours`
+        time.innerText = `Watching the show will take about ${totalWatchTime} hours.`
     }
-    eps.innerText = `This show has ${showNums.numEps} episodes over ${showNums.numSeas} seasons`
+    eps.innerText = `This show has ${showNums.numEps} episodes over ${showNums.numSeas} seasons.`
     statDiv.append(eps, time)
     return statDiv
 }
@@ -92,7 +91,7 @@ function divideWatch(showNums){
     let numberSelect = document.createElement('input')
     numberSelect.type = 'number'
     numberSelect.value = 1
-    dayDiv.innerText = 'How many episodes per day do you want to watch?'
+    dayDiv.innerText = 'How many episodes per day do you want to watch? '
     dayDiv.append(numberSelect)
     let results = document.createElement('p')
     let numOfDays = Math.ceil(showNums.numEps / numberSelect.value)
@@ -101,6 +100,9 @@ function divideWatch(showNums){
     numberSelect.addEventListener('input', ()=>{
         if (numberSelect.value * showNums.runtime > 24 * 60){
             results.innerText = "You can't watch that many episodes in one day"
+        }
+        else if (numberSelect.value > showNums.numEps){
+            results.innerText = "There aren't that many episodes!"
         }
         else {
             numOfDays = Math.ceil(showNums.numEps / numberSelect.value)
