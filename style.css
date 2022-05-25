@@ -15,7 +15,15 @@ div {
     color: blue;
     cursor: pointer;
 }
+header {
+    background-color: rgb(37, 37, 37);
+    color: whitesmoke;
+    margin-top: 0px;
+    margin-bottom: 15px;
+    padding: 10px;
+}
 
 footer {
     margin-top: 300px;
+    
 }
