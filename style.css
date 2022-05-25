@@ -4,7 +4,15 @@ body{
     font-family: Arial, Helvetica, sans-serif;
 }
 div {
+    margin: auto;
+    padding-left: 40px;
+    padding-right: 40px;
     max-width: 600px;
+}
+
+#results {
+    text-align: left;
+    color: blue;
 }
 
 footer {
