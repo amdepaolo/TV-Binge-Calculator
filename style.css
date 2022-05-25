@@ -1,0 +1,12 @@
+body{
+    margin: auto;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+div {
+    max-width: 600px;
+}
+
+footer {
+    margin-top: 300px;
+}
