@@ -88,6 +88,19 @@ function daysFromNow(numOfDays){
     return futureDate.toLocaleDateString()
 }
 
+function resultsText(totalEps, selectedValue, runtime){
+    let numOfDays = Math.ceil(totalEps / selectedValue)
+    if (selectedValue > totalEps){
+        return "There aren't that many episodes!"
+    }
+    else if (selectedValue * runtime > 24 * 60){
+        return "You can't watch that many episodes in one day"
+    } 
+    else {
+        return `If you watch at pace of ${selectedValue} per day you'll finish the show in ${numOfDays} days. If you start now you'll finish on ${daysFromNow(numOfDays)}!`}
+
+}
+
 function divideWatch(showNums){
     let dayDiv = document.createElement('div')
     let numberSelect = document.createElement('input')
@@ -96,19 +109,10 @@ function divideWatch(showNums){
     dayDiv.innerText = 'How many episodes per day do you want to watch? '
     dayDiv.append(numberSelect)
     let results = document.createElement('p')
-    let numOfDays = Math.ceil(showNums.numEps / numberSelect.value)
-    results.innerText = `If you watch at pace of ${numberSelect.value} per day you'll finish the show in ${numOfDays} days. If you start now you'll finish on ${daysFromNow(numOfDays)}!`
+    results.innerText = resultsText(showNums.numEps, numberSelect.value, showNums.runtime)
     dayDiv.append(results)
     numberSelect.addEventListener('input', ()=>{
-        if (numberSelect.value * showNums.runtime > 24 * 60){
-            results.innerText = "You can't watch that many episodes in one day"
-        }
-        else if (numberSelect.value > showNums.numEps){
-            results.innerText = "There aren't that many episodes!"
-        }
-        else {
-            numOfDays = Math.ceil(showNums.numEps / numberSelect.value)
-            results.innerText = `If you watch at pace of ${numberSelect.value} per day you'll finish the show in ${numOfDays} days. If you start now you'll finish on ${daysFromNow(numOfDays)}!`}
+        results.innerHTML = resultsText(showNums.numEps, numberSelect.value, showNums.runtime)
     })
     return dayDiv
 }
